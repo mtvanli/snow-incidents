@@ -339,7 +339,7 @@
                 var table = new Tabulator("#project-resultstable", {
                     height: 900, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
                     data: Obj, //assign data to table
-                    //layout: "fitColumns", //fit columns to width of table (optional)
+                    layout: "fitDataTable", //fit columns to width of table (optional)
                     placeholder: "No PM",
                     pagination: "local", //enable local pagination.
                     paginationSize: 22, // this option can take any positive integer value (default = 10)

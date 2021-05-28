@@ -1,62 +1,79 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="https://unpkg.com/tabulator-tables@4.0.5/dist/css/semantic-ui/tabulator_semantic-ui.min.css"
     rel="stylesheet">
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.0.5/dist/js/tabulator.min.js"></script>
 
-<table style="font-family:arial" class="center">
-    <tr>
-        <th>Impact</th>
-        <th>Status</th>
-        <th>Priority</th>
 
-    </tr>
-    <td class="container">
-        <div id="loader" class="child">
-            <img
-                src="https://ltapac.sharepoint.com/:i:/r/sites/LiveTilesIntranetEnterprise/SiteAssets/img/ajax-loader.gif?csf=1&web=1&e=RdDukm">
+    <title>Hello, world!</title>
+</head>
+<body>
+        
+    <div class="row">
+        <div class="col-md-4" >
+            <h3>Impact</h3>
+            <div class="container">
+                <div id="loader" class="child">
+                    <img
+                        src="">
+                </div>
+                <canvas id="Impact"  height="190"></canvas>
+            </div>
         </div>
-        <canvas id="Impact"  height="190"></canvas>
-    </td>
-    <td  class="container">
-        <div id="loader2" class="child">
-            <img
-                src="https://ltapac.sharepoint.com/:i:/r/sites/LiveTilesIntranetEnterprise/SiteAssets/img/ajax-loader.gif?csf=1&web=1&e=RdDukm">
+        <div class="col-md-4"  margin-left= auto>
+            <h3>Status</h3>
+            <div class="container">
+                <div id="loader2" class="child">
+                    <img
+                        src="">
+                </div>
+                <canvas id="Status"  height="190"></canvas>
+            </div>
         </div>
-        <canvas id="Status"  height="190"></canvas>
-    </td>
-    <td  class="container">
-        <div id="loader3" class="child">
-            <img
-                src="https://ltapac.sharepoint.com/:i:/r/sites/LiveTilesIntranetEnterprise/SiteAssets/img/ajax-loader.gif?csf=1&web=1&e=RdDukm">
+        <div class="col-md-4"  margin-left= auto>
+            <h3>Priority</h3>
+            <div class="container">
+                <div id="loader3" class="child">
+                    <img
+                        src="">
+                </div>
+                <canvas id="Priority"  height="190"></canvas>
+            </div>
         </div>
-        <canvas id="Priority"  height="190"></canvas>
-    </td>
-    </tr>
+       
+      </div>
 
-
-    <tr height="30"></tr>
-    <td>
-        <input type="text" id="filter" placeholder="Search..." />
-    </td>
-    <tr height="30"></tr>
-
-    <tr class="container">
-        <div id="loader4" class="child">
-            <img
-                src="https://ltapac.sharepoint.com/:i:/r/sites/LiveTilesIntranetEnterprise/SiteAssets/img/ajax-loader.gif?csf=1&web=1&e=RdDukm">
+    <div class="row">
+        <div class="col-md-12" >
+            <div class="container">
+                <div id="loader4" class="child">
+                    <img
+                        src="">
+                </div>
+                <div id="project-resultstable" colspan="3"></div>
+            </div>
         </div>
-        <td id="project-resultstable" colspan="3"></td>
-    </tr>
-
-    <tr>
-    </tr>
-
-    <tr>
-    </tr>
-
-</table>
+    </div>
+</body>
 
 <script>
 
@@ -178,7 +195,7 @@
                 }
 
                 var StateNumbers = [NewCount, InProgressCount, OnHoldCount, ClosedCount];
-                var StateLabels = ["New", "InProg", "OnHold", "Closed"];
+                var StateLabels = ["New", "In Progress", "On Hold", "Closed"];
 
                 var cty = document.getElementById('Status');
                 var myChart = new Chart(cty, {
@@ -339,6 +356,7 @@
                 var table = new Tabulator("#project-resultstable", {
                     height: 700, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
                     data: Obj, //assign data to table
+                    responsiveLayout:"hide",
                     layout: "fitColumns", //fit columns to width of table (optional)
                     placeholder: "No PM",
                     pagination: "local", //enable local pagination.
@@ -347,7 +365,7 @@
                     columns: [ //Define Table Columns
                         { title: "IncidentNo", field: "number", width: 120, resizable: false },
                         { title: "AssignedTo", field: "assigned_to.display_value", width: 130, formatter: "textarea" },
-                        { title: "Description", field: "description", width: 230, formatter: "textarea" },
+                        { title: "Description", field: "description", width: 230, formatter: "textarea", responsive:2 },
                         { title: "Impact", field: "impact", width: 95, resizable: false },
                         { title: "Status", field: "incident_state", width: 90, resizable: false },
                         { title: "Priority", field: "priority", width: 105 },
@@ -394,19 +412,6 @@
 
 
 </script>
-<style>
-  
-    table.center {
-        margin-left: auto;
-        margin-right: auto;
-        table-layout:fixed;
-        width: 100%;
-    }
+</html>   
 
-    .container {
-
-        position: relative;
-    }
-
-   
-</style>
+    

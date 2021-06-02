@@ -24,3 +24,21 @@ div.center {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
+
+
+  html, body {
+    padding: 0;
+    height: 100%;
+    margin: 0px;
+    overflow: hidden;   
+    
+    }
+    
+
+  .container, .container-md, .container-sm{
+    
+        max-width: 860px;
+    }
+  
